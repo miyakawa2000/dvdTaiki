@@ -10,6 +10,7 @@ def print_hi(name):
 
 def main():
     print("hello")
+    print("world")
     return 0
 
 
