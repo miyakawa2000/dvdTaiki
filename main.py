@@ -27,8 +27,8 @@ def main():
     text_width = text_surface.get_width()
     text_height = text_surface.get_height()
     # set the color of main display（value：(R,G,B)）
-    white = (220, 220, 220)
-    main_surface.fill(white)
+    main_surface_color = (0, 0, 0)
+    main_surface.fill(main_surface_color)
     # set the text on the main display（value：(surface, coordinate)）
     x = rd.randrange(0, width - text_width)
     y = rd.randrange(0, height - text_height)
@@ -52,7 +52,8 @@ def main():
                 going = False
 
         # init main surface
-        main_surface.fill(white)
+        main_surface.fill(main_surface_color)
+
         # move
         x += vx
         y += vy
