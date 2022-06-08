@@ -1,12 +1,20 @@
 import sys
 import pygame
 import random as rd
+from typing import Tuple
 
-def RandomColor():
+def RandomColor() -> Tuple[int,int,int]:
     R = rd.randrange(0, 255)
     G = rd.randrange(0, 255)
     B = rd.randrange(0, 255)
     return (R, G, B)
+
+def renderer(text: str,font_type: str=None, font_size: int=50, text_color: Tuple[int,int,int]=(220,220,220)) -> pygame.Surface:
+    # generate the font object
+    font = pygame.font.Font(font_type, font_size)
+    # generate the text surface object（value：text, antialias: bool, (R, G, B)）
+    text_surface = font.render(text, True, text_color)
+    return text_surface
 
 def main():
     # init pygame
@@ -17,22 +25,33 @@ def main():
     main_surface = pygame.display.set_mode((width, height))
     # set the title of main display
     pygame.display.set_caption("DVD Taiki")
-    # generate the font object（value：(font type, font size)）
-    # if font type is "None", it's set as the default font of pygame
-    font = pygame.font.Font(None, 60)
-    # generate the text surface object（value：text, antialias: bool, (R, G, B)）
+
     text_color = RandomColor()
-    text_surface = font.render("DVD", True, text_color)
+
+    ### DVD ###
+    text_surface1 = renderer("DVD", font_size=60, text_color=text_color)
+    # set the "DVD" width and height
+    dvd_width = text_surface1.get_width()
+    dvd_height = text_surface1.get_height()
+
+    ### video ###
+    text_surface2 = renderer("video", font_size=30, text_color=text_color)
+    # set the "video" width and height
+    video_width = text_surface2.get_width()
+    video_height = text_surface2.get_height()
+
     # set the text width and height
-    text_width = text_surface.get_width()
-    text_height = text_surface.get_height()
+    text_width = max(dvd_width, video_width)
+    text_height = dvd_height + video_height
+
     # set the color of main display（value：(R,G,B)）
     main_surface_color = (0, 0, 0)
     main_surface.fill(main_surface_color)
     # set the text on the main display（value：(surface, coordinate)）
     x = rd.randrange(0, width - text_width)
     y = rd.randrange(0, height - text_height)
-    main_surface.blit(text_surface, (x, y))
+    main_surface.blit(text_surface1, (x, y))
+    main_surface.blit(text_surface2, (x+(dvd_width-video_width)/2, y+dvd_height))
     # update the main display
     pygame.display.update()
     # set the clock object
@@ -43,7 +62,7 @@ def main():
 
     # flag for loop
     going = True
-    # main loop
+    ### main loop ###
     while going:
         # get a event
         for event in pygame.event.get():
@@ -61,17 +80,20 @@ def main():
         # collision decision
         if x <= 0 or x + text_width >= width:
             vx *= -1
-            vx += rd.uniform(-1, 1)
+            vx += rd.uniform(-0.5, 0.5)
             text_color = RandomColor()
-            text_surface = font.render("DVD", True, text_color)
+            text_surface1 = renderer("DVD", font_size=60, text_color=text_color)
+            text_surface2 = renderer("video", font_size=30, text_color=text_color)
         if y <= 0 or y + text_height >= height:
             vy *= -1
-            vy += rd.uniform(-1, 1)
+            vy += rd.uniform(-0.5, 0.5)
             text_color = RandomColor()
-            text_surface = font.render("DVD", True, text_color)
+            text_surface1 = renderer("DVD", font_size=60, text_color=text_color)
+            text_surface2 = renderer("video", font_size=30, text_color=text_color)
 
         # depict the text
-        main_surface.blit(text_surface, (x, y))
+        main_surface.blit(text_surface1, (x, y))
+        main_surface.blit(text_surface2, (x+(dvd_width-video_width)/2, y+dvd_height))
         # update the display
         pygame.display.update()
 
