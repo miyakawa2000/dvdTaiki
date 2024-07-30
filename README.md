@@ -1,4 +1,4 @@
-[![dvdTaiki demo movie](https://github.com/user-attachments/assets/08b9943b-a150-45b4-9764-e80643653799)](https://youtu.be/zQCNyQTm-WI)
+[![dvdTaiki demo movie](https://github.com/user-attachments/assets/88692078-ba30-4b6e-bfda-7b459658229f)](https://youtu.be/zQCNyQTm-WI)
 # 📀 dvdTaiki
 dvdTaiki, which made with [pygame](https://www.pygame.org/), makes you feel nostalgic.
 
