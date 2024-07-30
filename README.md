@@ -14,7 +14,7 @@ pip install pygame
 ### Run
 1. Change the directory to dvdTaiki.
 ```
-cd dvdTaiki
+cd dvdTaiki/
 ```
 2. Run the code.
 ```
