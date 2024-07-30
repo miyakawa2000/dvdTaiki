@@ -1,5 +1,6 @@
+[![dvdTaiki demo movie](https://github.com/user-attachments/assets/08b9943b-a150-45b4-9764-e80643653799)](https://youtu.be/zQCNyQTm-WI)
 # 📀 dvdTaiki
-dvdTaiki was made with [pygame](https://www.pygame.org/) to make you feel nostalgic.
+dvdTaiki, which made with [pygame](https://www.pygame.org/), makes you feel nostalgic.
 
 ## Getting Started
 ### Installation
